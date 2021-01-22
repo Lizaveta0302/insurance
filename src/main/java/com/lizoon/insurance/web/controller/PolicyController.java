@@ -8,6 +8,7 @@ import com.lizoon.insurance.mapper.PolicyMapper;
 import com.lizoon.insurance.service.PolicyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -24,22 +25,19 @@ public class PolicyController {
     private final PolicyMapper policyMapper;
     private final MappingJackson2XmlHttpMessageConverter xmlConverter;
 
-    private static final String MEDIA_TYPE_JSON = "application/json";
-    private static final String MEDIA_TYPE_XML = "application/xml";
-
     @GetMapping("/{id}")
     public ResponseEntity<PolicyViewDto> getPolicy(@PathVariable long id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(policyMapper.map(policyService.getPolicy(id)));
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PolicyViewDto>> getAllPoliciesInJsonFormat() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(policyMapper.map(policyService.getAllPolicies()));
     }
 
-    @GetMapping(value = "/xmlFormat", produces = MEDIA_TYPE_XML)
+    @GetMapping(value = "/xmlFormat", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<?> getAllPoliciesInXmlFormat() throws JsonProcessingException {
         ObjectMapper xmlMapper = xmlConverter.getObjectMapper();
         return ResponseEntity.status(HttpStatus.OK)

@@ -24,19 +24,22 @@ public class PolicyController {
     private final PolicyMapper policyMapper;
     private final MappingJackson2XmlHttpMessageConverter xmlConverter;
 
+    private static final String MEDIA_TYPE_JSON = "application/json";
+    private static final String MEDIA_TYPE_XML = "application/xml";
+
     @GetMapping("/{id}")
     public ResponseEntity<PolicyViewDto> getPolicy(@PathVariable long id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(policyMapper.map(policyService.getPolicy(id)));
     }
 
-    @GetMapping("/jsonFormat")
+    @GetMapping
     public ResponseEntity<List<PolicyViewDto>> getAllPoliciesInJsonFormat() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(policyMapper.map(policyService.getAllPolicies()));
     }
 
-    @GetMapping(value = "/xmlFormat")
+    @GetMapping(value = "/xmlFormat", produces = MEDIA_TYPE_XML)
     public ResponseEntity<?> getAllPoliciesInXmlFormat() throws JsonProcessingException {
         ObjectMapper xmlMapper = xmlConverter.getObjectMapper();
         return ResponseEntity.status(HttpStatus.OK)

@@ -24,7 +24,7 @@ public class PolicyServiceImpl implements PolicyService {
 
         Optional<Policy> policy = policyRepository.findById(id);
 
-        if (policy.isEmpty()) {
+        if (!policy.isPresent()) {
             throw new NotFoundException("Policy with id " + id + " is not found.", "id");
         }
 
@@ -53,7 +53,7 @@ public class PolicyServiceImpl implements PolicyService {
 
         Optional<Policy> policy = policyRepository.findById(id);
 
-        if (policy.isEmpty()) {
+        if (!policy.isPresent()) {
             throw new NotFoundException("Policy with id " + id + " is not found.", "id");
         }
         policyRepository.delete(policy.get());

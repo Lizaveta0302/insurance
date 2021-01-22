@@ -22,6 +22,7 @@
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <compiler.plugin.version>3.5.1</compiler.plugin.version>
         <jackson.dataformat.xml.version>2.11.1</jackson.dataformat.xml.version>
+        <woodstox.core.asl.version>4.4.1</woodstox.core.asl.version>
     </properties>
 
     <dependencies>
@@ -62,6 +63,11 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson.dataformat.xml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>woodstox-core-asl</artifactId>
+            <version>${woodstox.core.asl.version}</version>
         </dependency>
     </dependencies>
 

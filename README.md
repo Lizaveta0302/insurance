@@ -10,7 +10,7 @@ JDK 1.8
 Maven 3
 PostgreSQL 11
 
-Running the application locally
+Running the application locally.
 There are several ways to run a Spring Boot application on your local machine. 
 One way is to execute the main method in the src/main/java/com/lizoon/insurance/InsuranceApplication.java class from your IDE.
 
@@ -24,8 +24,11 @@ https://vehicleinsurance.herokuapp.com/
 Mappings:
 Get:
 http://localhost:8080/ - show all policies in json format
+
 http://localhost:8080/{id} - show a certain policy by id
+
 http://localhost:8080/xmlFormat - show all policies in xml format
+
 Post:
 http://localhost:8080/ - create new policy (required json body, for example 
 {
